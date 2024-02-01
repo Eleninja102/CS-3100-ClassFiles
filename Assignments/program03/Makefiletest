@@ -1,0 +1,52 @@
+CC = gcc
+CC-flags = -Wall
+
+FILE = prog03 minMax
+
+#all: prog03 minMax
+#
+#default: prog03 minMax
+#
+#$(FILE:%): $(FILE:%).o
+#	$(CC) $(FILE:%).o -o $(FILE:%) $(CC-flags)
+#
+#$(FILE:%).o: $(FILE:%).c
+#	$(CC) -c $(FILE:%).c $(CC-flags)
+
+#objects = program1 program2
+all: $(FILE)
+
+#$(FILE): %: %.c
+#	$(CC) $(CFLAGS) -o $@ $<
+
+$(FILE): $@.o
+	$(CC) $@.o -o $@ $(CC-flags)
+	
+$(FILE).o: $@
+	$(CC) -c $@.c $(CC-flags)
+
+	
+	
+#gcc -c prog03.c -Wall -g
+#gcc prog03.o -o prog03 -Wall -g
+#gcc -c minMax.c -Wall -g
+#gcc minMax.o -o minMax -Wall -g
+
+#prog03: prog03.o
+#	$(CC) prog03.o -o prog03 $(CC-flags)
+#
+#prog03.o: prog03.c
+#	$(CC) -c prog03.c $(CC-flags)
+#
+#minMax: minMax.o
+#	$(CC) minMax.o -o minMax $(CC-flags)
+#
+#minMax.o: minMax.c
+#	$(CC) -c minMax.c $(CC-flags)
+	
+clean:
+	-rm -f prog03.o
+	-rm -f prog03
+	-rm -f minMax.o
+	-rm -f minMax
+	
