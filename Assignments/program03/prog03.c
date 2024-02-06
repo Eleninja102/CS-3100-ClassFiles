@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 		printf("Missing file name or process count");
 		return -1;
 	}
+	
 	if(pipe(cp)){
 		printf("didn't work, couldn't not establish pipe.\n");
 		return -1;
@@ -38,24 +39,25 @@ int main(int argc, char *argv[]) {
 			close(1); //close stdout
 			close(cp[0]); //close write pipe in
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
-			char str[sizeof(int)];
+			close(cp[0]);
+			char str[12];
 			sprintf(str, "%d", processCounter);
 
 			execl("minMax", "minMax", argv[2], str, (char*)0);
 			
 
-		}else{
-			
 		}
 	}
 	if(processID != 0){
 		wait(NULL);
 
-		char ch;
 		close(cp[1]);
-		while(read(cp[0], &ch, 1) == 1) {
-			printf("%c",ch);
+		
+		char printfCh;
+		while(read(cp[0], &printfCh, 1) == 1) {
+			printf("%c", printfCh);
 		}
+		
 		close(cp[0]);
 
 
