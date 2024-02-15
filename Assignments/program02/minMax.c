@@ -36,12 +36,13 @@ int main(int argc, char *argv[]) {
 //	printf("how many integers = %i\n\n", numberOfIntegers);	
 	
 	//int totalAmount = 0;
-	int minNumber = 0;
-	int maxNumber = 0;
+	int minNumber;
+	int maxNumber;
 
 	for(int i = 0; i < numberOfIntegers; i++){
 		int temp = 0;
 		fread(&temp,sizeof(int),1,inputFile);
+		//if(i == 0){minNumber = temp; maxNumber=temp; continue;}
 		//totalAmount +=temp;
 		minNumber = minNumber > temp ? temp: minNumber;
 		maxNumber = maxNumber < temp ? temp: maxNumber;

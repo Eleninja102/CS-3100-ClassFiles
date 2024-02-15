@@ -14,6 +14,7 @@ It took me about 2 hours
 #include <sys/time.h>
 
 #define NAME "Coleton Watt"
+
 int main(int argc, char *argv[]) {
 	clock_t start = clock();
 	struct timeval startTime, endTime;
