@@ -144,11 +144,11 @@ int main(int argc, char *argv[]) {
 	gettimeofday(&startTime, NULL);
 	
 	char * name = "my_semaphore";
-	int VALUE = 2;
+	int VALUE = 1;
 	printf("Open or Create a named semaphore, %s, its value is %d\n", name,VALUE);
-	sem = sem_open(name, O_CREAT, 0666, VALUE);
-
 	
+	sem = sem_open(name, O_CREAT, 0666, VALUE);
+	///sem_init(sem, 0, 1);	
 	pthread_create(&t1, NULL, incfn4, NULL);
 	pthread_create(&t2, NULL, incfn4, NULL);
 	
